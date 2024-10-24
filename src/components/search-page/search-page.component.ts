@@ -20,8 +20,8 @@ import { filter, map } from 'rxjs/operators';
 })
 export class SearchPageComponent implements AfterViewInit {
 
-    $pokemons: Observable<Array<NamedAPIResource>> = of([]);
-    $elements: Observable<Array<NamedAPIResource>> = of([]);
+    $pokemons: Observable<Array<NamedAPIResource>> = this.emptyElements();
+    $elements: Observable<Array<NamedAPIResource>> = this.emptyElements();
 
     constructor(private store: Store) {
         this.store.dispatch(setInitialData());
@@ -53,6 +53,14 @@ export class SearchPageComponent implements AfterViewInit {
     }
 
     onMouseOutResults(): void {
-        this.$elements = of([]);
+        this.$elements = this.emptyElements();
+    }
+
+    onCancelClick(): void {
+        this.$elements = this.emptyElements();
+    }
+
+    private emptyElements(): Observable<Array<NamedAPIResource>> {
+        return of([]);
     }
 }
