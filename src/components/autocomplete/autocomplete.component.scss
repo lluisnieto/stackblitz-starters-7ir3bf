@@ -1,4 +1,6 @@
 $blue: rgb(0,80,205);
+$lightBlue: rgb(219,243,254);
+$superLightBlue : rgb(241,250,255);
 
 :host {
   display: block;
@@ -56,4 +58,29 @@ input {
 
 .search {
   filter: invert(0.5) sepia(1) saturate(5) hue-rotate(195deg) brightness(0.7);
+}
+
+
+.elements {
+  border: solid 1px #999;
+  border-radius: 4px;
+  background: #FFF;
+  margin: 10px 0;
+  box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.15);
+}
+.element {
+  margin: 5px;
+  height: 30px;
+  color: #999;
+  display: block;
+  font-size: 20px;
+
+  &:hover {
+    background: $superLightBlue;
+  }
+
+  &:active {
+    background: $lightBlue;
+    font-weight: bold;
+  }
 }

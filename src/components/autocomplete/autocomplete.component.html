@@ -1,3 +1,20 @@
-<input type="text" placeholder="Favorite Character">
+<input
+    type="text"
+    placeholder="Favorite Character"
+    [(ngModel)]="inputValue"
+    (keyup)="valueChange()"
+    (focus)="setFocus()"
+>
 <img src="assets/images/mat-close.svg" class="cancel">
 <img src="assets/images/mat-search.svg" class="search">
+
+<div
+    class="elements"
+    *ngIf="(elements | async)?.length"
+    (mouseleave)="mouseOutResults()"
+>
+    <span
+        class="element"
+        *ngFor="let element of elements | async; let i = index"
+    >{{ element.name }}</span>
+</div>

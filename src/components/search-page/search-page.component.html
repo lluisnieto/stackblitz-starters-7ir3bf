@@ -1,0 +1,7 @@
+<h1>PokeSelect</h1>
+<app-autocomplete
+    (textChanged)="textChanged($event)"
+    (onFocus)="onFocus($event)"
+    (onMouseOutResults)="onMouseOutResults()"
+    [elements]="$pokemons"
+></app-autocomplete>
