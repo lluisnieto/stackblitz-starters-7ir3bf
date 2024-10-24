@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Observable, of } from 'rxjs';
+import { NamedAPIResource } from 'pokenode-ts';
 
 @Component({
   selector: 'app-autocomplete',
@@ -12,7 +13,7 @@ import { Observable, of } from 'rxjs';
 })
 export class AutocompleteComponent {
 
-    @Input() elements: Observable<any[]> = of([]);
+    @Input() elements: Observable<NamedAPIResource[]> = of([]);
     @Output() textChanged = new EventEmitter<string>();
     @Output() onFocus = new EventEmitter<string>();
     @Output() onMouseOutResults = new EventEmitter<void>();

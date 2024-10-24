@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { setInitialData } from '../../app.actions';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import { getNamedResourcesSelector } from '../../app.selectors';
-import { map, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { NamedAPIResource, NamedAPIResourceList } from 'pokenode-ts';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-search-page',
@@ -16,29 +18,41 @@ import { map, Observable, of } from 'rxjs';
     templateUrl: './search-page.component.html',
     styleUrl: './search-page.component.scss'
 })
-export class SearchPageComponent {
+export class SearchPageComponent implements AfterViewInit {
 
-    $pokemons: Observable<Array<any>> = of([]);
+    $pokemons: Observable<Array<NamedAPIResource>> = of([]);
+    $elements: Observable<Array<NamedAPIResource>> = of([]);
 
     constructor(private store: Store) {
         this.store.dispatch(setInitialData());
     }
 
-    textChanged(event: string): void {
-
+    ngAfterViewInit(): void {
+        this.$pokemons = this.store.select(getNamedResourcesSelector).pipe(
+            filter(x => x != null),
+            map((value: NamedAPIResourceList) => {
+                return value.results;
+            })
+        );
     }
 
-    onFocus(event: any): void {
-        if (!event.length)  {
-            this.$pokemons = this.store.select(getNamedResourcesSelector).pipe(
-                map((value: any) => {
-                    return value.results;
-                })
-            )
+    textChanged(searchText: string): void {
+        this.$elements = this.$pokemons.pipe(
+            map((elements: Array<NamedAPIResource>) => {
+                return elements.filter((element: NamedAPIResource) => {
+                    return element.name.toLowerCase().includes(searchText);
+                });
+            })
+        );
+    }
+
+    onFocus(searchText: string): void {
+        if (!searchText.length)  {
+            this.$elements = this.$pokemons
         }
     }
 
     onMouseOutResults(): void {
-        this.$pokemons = of([]);
+        this.$elements = of([]);
     }
 }
