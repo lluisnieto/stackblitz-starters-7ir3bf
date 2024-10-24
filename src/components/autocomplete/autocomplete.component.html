@@ -16,5 +16,6 @@
     <span
         class="element"
         *ngFor="let element of elements | async; let i = index"
+        (click)="clickElement(element.url)"
     >{{ element.name }}</span>
 </div>

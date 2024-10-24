@@ -1,7 +1,8 @@
-import { NamedAPIResourceList } from 'pokenode-ts';
+import { NamedAPIResourceList, Pokemon } from 'pokenode-ts';
 
 export interface State{
-  namedResourcesList?: NamedAPIResourceList
+    namedResourcesList?: NamedAPIResourceList
+    selectedPokemon?: Pokemon
 }
 
 export const initialAppState: State = {

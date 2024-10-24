@@ -1,0 +1,10 @@
+<ng-content *ngIf="(pokemon$ | async) as pokemon">
+    <div class="wrapper">
+        <img src="{{ pokemon.sprites.front_default }}" alt="{{ pokemon.name }}" class="sprite">
+        <h2>{{ pokemon.name }}</h2>
+        <dl>
+            <dt>Weight:</dt>
+            <dd>{{ pokemon.weight }}</dd>
+        </dl>
+    </div>
+</ng-content>

@@ -10,4 +10,8 @@ export class ApiProvider {
     loadInitialData(count: number): Observable<any> {
         return this.httpClient.get(`https://pokeapi.co/api/v2/pokemon?&limit=${count}`);
     }
+
+    loadSelectedElement(url: string): Observable<any> {
+        return this.httpClient.get(url);
+    }
 }

@@ -4,5 +4,7 @@
     (onFocus)="onFocus($event)"
     (onMouseOutResults)="onMouseOutResults()"
     (onCancelClick)="onCancelClick()"
-    [elements]="$elements"
+    (onClickElement)="onClickElement($event)"
+    [elements]="elements$"
 ></app-autocomplete>
+<app-pokemon [pokemon$]="pokemon$"></app-pokemon>

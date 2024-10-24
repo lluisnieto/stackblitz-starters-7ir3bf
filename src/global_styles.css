@@ -10,13 +10,6 @@
     src: url('assets/fonts/Oswald-Regular.ttf');
 }
 
-h1 {
-    font-family: 'oswald-light';
-    text-align: center;
-    font-size: 40px;
-}
-
-app-autocomplete {
-    max-width: 500px;
-    margin: 0 auto;
+* {
+    font-family: 'oswald-light', serif;
 }

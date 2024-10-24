@@ -18,6 +18,7 @@ export class AutocompleteComponent {
     @Output() onFocus = new EventEmitter<string>();
     @Output() onMouseOutResults = new EventEmitter<void>();
     @Output() onCancelClick = new EventEmitter<void>();
+    @Output() onClickElement = new EventEmitter<string>();
     inputValue = '';
 
     setFocus(): void {
@@ -35,6 +36,12 @@ export class AutocompleteComponent {
     cancelClick(): void {
         this.inputValue = '';
         this.onCancelClick.emit();
+    }
+
+    clickElement(url: string): void {
+        this.inputValue = '';
+        this.onClickElement.emit(url);
+        this.onMouseOutResults.emit();
     }
 
 }

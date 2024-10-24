@@ -21,7 +21,6 @@ input {
   outline: none;
   width: calc(100% - 100px);
   margin: 0 0 0 10px;
-  font-family: 'oswald-light';
   overflow: visible;
   letter-spacing: 0.5px;
   position: relative;
@@ -57,7 +56,7 @@ input {
 }
 
 .search {
-  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(195deg) brightness(0.7);
+  filter: invert(0.5) sepia(1) saturate(45) hue-rotate(215deg) brightness(0.7);
 }
 
 

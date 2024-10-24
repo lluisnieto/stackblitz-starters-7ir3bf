@@ -1,0 +1,30 @@
+.wrapper {
+  display: block;
+  border: solid 1px rgb(34,40,53);
+  border-radius: 7px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.sprite {
+  float: left;
+}
+
+h2 {
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+dl {
+  margin: 0 0 0 98px;
+}
+
+dt, dd {
+  font-size: 20px;
+  display: inline;
+}
+
+dd {
+  margin: 0 0 0 5px;
+}
