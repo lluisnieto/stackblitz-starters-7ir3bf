@@ -14,6 +14,7 @@ import { NamedAPIResource } from 'pokenode-ts';
 export class AutocompleteComponent {
 
     @Input() elements: Observable<NamedAPIResource[]> = of([]);
+    @Input() selectedPokemonName: string = '';
     @Output() textChanged = new EventEmitter<string>();
     @Output() onFocus = new EventEmitter<string>();
     @Output() onMouseOutResults = new EventEmitter<void>();

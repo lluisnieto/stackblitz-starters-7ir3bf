@@ -1,7 +1,5 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
-import { NamedAPIResource, Pokemon } from 'pokenode-ts';
+import { Component, Input } from '@angular/core';
+import { Pokemon } from 'pokenode-ts';
 import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 

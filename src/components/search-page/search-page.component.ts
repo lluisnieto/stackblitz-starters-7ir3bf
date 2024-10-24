@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { NamedAPIResource, NamedAPIResourceList, Pokemon } from 'pokenode-ts';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 
 import { setInitialData, setSelectedPokemon, } from '../../app.actions';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
@@ -26,6 +26,7 @@ export class SearchPageComponent implements AfterViewInit {
     pokemons$: Observable<Array<NamedAPIResource>> = this.emptyElements();
     elements$: Observable<Array<NamedAPIResource>> = this.emptyElements();
     pokemon$: Observable<Pokemon> = of();
+    selectedPokemonName = '';
 
     constructor(private store: Store) {
         this.store.dispatch(setInitialData());
@@ -39,7 +40,10 @@ export class SearchPageComponent implements AfterViewInit {
             })
         );
         this.pokemon$ = this.store.select(getSelectedPokemon).pipe(
-            filter(x => x != null)
+            filter(x => x != null),
+            tap((pokemon: Pokemon) => {
+                this.selectedPokemonName = pokemon.name;
+            })
         )
     }
 
