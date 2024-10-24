@@ -6,12 +6,13 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
   selector: 'app-root',
   standalone: true,
   template: `
+    <h1>PokeSelect</h1>
     <app-autocomplete></app-autocomplete>
   `,
   imports: [AutocompleteComponent],
 })
 export class App {
-  name = 'Angular';
+
 }
 
 bootstrapApplication(App);

@@ -2,10 +2,22 @@
 
 @font-face {
   font-family: 'loveYaLikeAsister';
-  src: url('https://fonts.google.com/icons');
+  src: url('assets/fonts/MaterialIcons-Regular.ttf');
+}
+
+
+@font-face {
+    font-family: 'oswald-light';
+    src: url('assets/fonts/Oswald-Light.ttf');
+}
+
+@font-face {
+    font-family: 'oswald-regular';
+    src: url('assets/fonts/Oswald-Regular.ttf');
 }
 
 h1 {
-  color: red !important;
-  font-family: 'loveYaLikeAsister';
+    font-family: 'oswald-light';
+    text-align: center;
+    font-size: 40px;
 }
