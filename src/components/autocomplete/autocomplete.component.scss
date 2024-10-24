@@ -1,0 +1,59 @@
+$blue: rgb(0,80,205);
+
+:host {
+  display: block;
+  position: relative;
+  background: rgb(245,245,245);
+  height: 60px;
+  border-bottom: solid 2px $blue;
+}
+
+.label {
+  position: absolute;
+}
+
+input {
+  height: 50px;
+  border: 0;
+  background: transparent;
+  outline: none;
+  width: calc(100% - 100px);
+  margin: 0 0 0 10px;
+  font-family: 'oswald-light';
+  overflow: visible;
+  letter-spacing: 0.5px;
+  position: relative;
+  top: -5px;
+  color: $blue;
+  font-size: 24px;
+
+  &::placeholder {
+    position: relative;
+    top: 0;
+    font-size: 24px;
+    transition: all 200ms ease-out;
+    pointer-events: none;
+  }
+
+  &:focus {
+    &::placeholder {
+      font-size: 14px;
+      top:-20px;
+    }
+  }
+}
+
+.cancel, .search {
+  height: 20px;
+  margin-top: 25px;
+  margin-left: 14px;
+  cursor: pointer;
+}
+
+.cancel {
+  filter: brightness(0.7);
+}
+
+.search {
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(195deg) brightness(0.7);
+}
