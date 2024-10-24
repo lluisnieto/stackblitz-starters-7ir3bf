@@ -20,9 +20,15 @@ export class AutocompleteComponent {
     @Output() onCancelClick = new EventEmitter<void>();
     @Output() onClickElement = new EventEmitter<string>();
     inputValue = '';
+    labelVisible = false;
 
     setFocus(): void {
         this.onFocus.emit(this.inputValue);
+        setTimeout(() => { this.labelVisible = true; }, 200);
+    }
+
+    removeFocus(): void {
+        this.labelVisible = false;
     }
 
     valueChange(): void {
@@ -35,6 +41,7 @@ export class AutocompleteComponent {
 
     cancelClick(): void {
         this.inputValue = '';
+        this.labelVisible = false;
         this.onCancelClick.emit();
     }
 
@@ -42,6 +49,7 @@ export class AutocompleteComponent {
         this.inputValue = '';
         this.onClickElement.emit(url);
         this.onMouseOutResults.emit();
+        this.labelVisible = false;
     }
 
 }

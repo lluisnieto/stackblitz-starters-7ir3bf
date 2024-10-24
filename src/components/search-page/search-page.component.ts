@@ -56,6 +56,8 @@ export class SearchPageComponent implements AfterViewInit {
     onFocus(searchText: string): void {
         if (!searchText.length)  {
             this.elements$ = this.pokemons$
+        } else {
+            this.textChanged(searchText);
         }
     }
 
@@ -64,7 +66,7 @@ export class SearchPageComponent implements AfterViewInit {
     }
 
     onCancelClick(): void {
-        this.elements$ = this.emptyElements();
+        this.elements$ = this.pokemons$;
     }
 
     onClickElement(url: string): void {

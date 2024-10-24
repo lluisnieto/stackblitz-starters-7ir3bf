@@ -1,9 +1,15 @@
+<label
+    for="searchText"
+    [ngClass]="{ 'on': labelVisible }"
+>Favorite Character</label>
 <input
     type="text"
+    id="searchText"
     placeholder="Favorite Character"
     [(ngModel)]="inputValue"
     (keyup)="valueChange()"
     (focus)="setFocus()"
+    (focusout)="removeFocus();"
 >
 <img src="assets/images/mat-close.svg" class="cancel" (click)="cancelClick()">
 <img src="assets/images/mat-search.svg" class="search">
