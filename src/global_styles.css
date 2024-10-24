@@ -1,0 +1,11 @@
+/* Add application styles & imports to this file! */
+
+@font-face {
+  font-family: 'loveYaLikeAsister';
+  src: url('https://fonts.google.com/icons');
+}
+
+h1 {
+  color: red !important;
+  font-family: 'loveYaLikeAsister';
+}
