@@ -7,7 +7,7 @@ import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { FeatureKey } from './app.selectors';
-import { initialDataReducer } from './app.reducers';
+import { pokemonReducer } from './app.reducers';
 import { AppEffects } from './app.effects';
 
 export const appConfig: ApplicationConfig = {
@@ -15,7 +15,7 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(),
         provideZoneChangeDetection({ eventCoalescing: true }),
         provideStore({ router: routerReducer }),
-        provideState({ name: FeatureKey, reducer: initialDataReducer }),
+        provideState({ name: FeatureKey, reducer: pokemonReducer }),
         provideAnimationsAsync(),
         provideEffects(AppEffects),
         provideRouterStore(),

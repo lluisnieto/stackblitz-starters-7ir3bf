@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { NamedAPIResource, NamedAPIResourceList, Pokemon } from 'pokenode-ts';
 import { filter, map, tap } from 'rxjs/operators';
 
-import { setInitialData, setSelectedPokemon, } from '../../app.actions';
+import { setLoadElements, setLoadElementsNextPage, setSelectedPokemon, } from '../../app.actions';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import { getNamedResourcesSelector, getSelectedPokemon } from '../../app.selectors';
 import { PokemonComponent } from '../pokemon/pokemon.component';
@@ -26,15 +26,19 @@ export class SearchPageComponent implements AfterViewInit {
     pokemons$: Observable<Array<NamedAPIResource>> = this.emptyElements();
     elements$: Observable<Array<NamedAPIResource>> = this.emptyElements();
     pokemon$: Observable<Pokemon> = of();
+    nextPageUrl = '';
     selectedPokemonName = '';
 
     constructor(private store: Store) {
-        this.store.dispatch(setInitialData());
+        this.store.dispatch(setLoadElements({ itemsPerPage: 151 }));
     }
 
     ngAfterViewInit(): void {
         this.pokemons$ = this.store.select(getNamedResourcesSelector).pipe(
             filter(x => x != null),
+            tap((value: NamedAPIResourceList) => {
+                this.nextPageUrl = value.next as string;
+            }),
             map((value: NamedAPIResourceList) => {
                 return value.results;
             })
@@ -75,6 +79,10 @@ export class SearchPageComponent implements AfterViewInit {
 
     onClickElement(url: string): void {
         this.store.dispatch(setSelectedPokemon({ url }))
+    }
+
+    onScrollEnd(): void {
+        this.store.dispatch(setLoadElementsNextPage({ url: this.nextPageUrl }))
     }
 
     private emptyElements(): Observable<Array<NamedAPIResource>> {

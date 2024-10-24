@@ -18,6 +18,7 @@
     class="elements"
     *ngIf="(elements | async)?.length"
     (mouseleave)="mouseOutResults()"
+    (scroll)="onScroll($event)"
 >
     <span
         *ngFor="let element of elements | async; let i = index"

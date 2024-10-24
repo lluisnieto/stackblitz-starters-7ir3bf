@@ -7,11 +7,11 @@ export class ApiProvider {
 
     constructor(private httpClient: HttpClient){}
 
-    loadInitialData(count: number): Observable<any> {
+    loadData(count: number): Observable<any> {
         return this.httpClient.get(`https://pokeapi.co/api/v2/pokemon?&limit=${count}`);
     }
 
-    loadSelectedElement(url: string): Observable<any> {
+    loadUrl(url: string): Observable<any> {
         return this.httpClient.get(url);
     }
 }

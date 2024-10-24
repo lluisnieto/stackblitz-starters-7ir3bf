@@ -20,6 +20,7 @@ export class AutocompleteComponent {
     @Output() onMouseOutResults = new EventEmitter<void>();
     @Output() onCancelClick = new EventEmitter<void>();
     @Output() onClickElement = new EventEmitter<string>();
+    @Output() scrollEnd = new EventEmitter<void>();
     inputValue = '';
     labelVisible = false;
 
@@ -51,6 +52,12 @@ export class AutocompleteComponent {
         this.onClickElement.emit(url);
         this.onMouseOutResults.emit();
         this.labelVisible = false;
+    }
+
+    onScroll(event: any): void {
+        if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+            this.scrollEnd.emit();
+        }
     }
 
 }

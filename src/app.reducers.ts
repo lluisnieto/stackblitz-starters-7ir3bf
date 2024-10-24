@@ -1,15 +1,27 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import { initialAppState } from './app.state';
-import { setInitialDataSuccess, setSelectedPokemonSuccess } from './app.actions';
+import { setLoadElementsNextPageSuccess, setLoadElementsSuccess, setSelectedPokemonSuccess } from './app.actions';
 
-export const initialDataReducer = createReducer(
+export const pokemonReducer = createReducer(
     initialAppState,
-    on(setInitialDataSuccess, (state, value: any) => {
+    on(setLoadElementsSuccess, (state, value: any) => {
         return { ...state, namedResourcesList: value.payload };
     }),
     on(setSelectedPokemonSuccess, (state, value: any) => {
         return { ...state, selectedPokemon: value.payload};
+    }),
+    on(setLoadElementsNextPageSuccess, (state: any, value: any) => {
+        if (state) {
+            return {
+                ...state,
+                namedResourcesList: {
+                    ...state.namedResourcesList,
+                    results: [...state.namedResourcesList.results, ...value.payload.results],
+                    next: value.payload.next
+                }
+            };
+        }
     })
 );
 
